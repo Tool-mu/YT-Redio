@@ -1,5 +1,6 @@
 mod app;
 mod message;
+mod ui;
 
 use app::App;
 use iced::{Size, window};
@@ -7,11 +8,12 @@ use message::Message;
 use std::time::Duration;
 
 fn main() -> iced::Result {
-    iced::application(App::boot, App::update, App::view)
+    iced::application(App::boot, App::update, ui::view)
         .title(|_app: &App| "收音机".to_string())
         .window(window::Settings {
-            size: Size::new(760.0, 540.0),
+            size: Size::new(ui::texture::BODY_W, ui::texture::BODY_H),
             resizable: false,
+            icon: ui::texture::window_icon(),
             ..Default::default()
         })
         .theme(|_app: &App| iced::Theme::Dark)
