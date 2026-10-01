@@ -9,9 +9,9 @@ pub enum Band {
 
 #[derive(Debug, Clone)]
 pub enum Message {
-    Tick,              // 秒钟滴答
-    StationStep(i32),  // 电台
-    BandChange(Band),  // 区域
-    PowerToggle,       // 电源
-    FlipToggle,        // 切换
+    Tick,             // 秒钟滴答
+    StationStep(i32), // 电台
+    BandChange(Band), // 区域
+    PowerToggle,      // 电源
+    FlipToggle,       // 切换
 }

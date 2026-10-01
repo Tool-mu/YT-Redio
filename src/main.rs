@@ -2,10 +2,9 @@ mod app;
 mod message;
 
 use app::App;
+use iced::{Size, window};
 use message::Message;
 use std::time::Duration;
-use iced::{Size, window};
-
 
 fn main() -> iced::Result {
     iced::application(App::boot, App::update, App::view)
