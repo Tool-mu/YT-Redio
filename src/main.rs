@@ -1,31 +1,11 @@
-use iced::widget::{column, text};
-use iced::{window, Element, Size, Task};
+mod app;
+mod message;
 
-#[derive(Debug, Clone)]
-enum Message {}
+use app::App;
+use message::Message;
+use std::time::Duration;
+use iced::{Size, window};
 
-#[derive(Default)]
-struct App;
-
-impl App {
-    fn boot() -> (Self, Task<Message>) {
-        (App, Task::none())
-    }
-
-    fn update(&mut self, _message: Message) -> Task<Message> {
-        Task::none()
-    }
-
-    fn view(&self) -> Element<'_, Message> {
-        column![
-            text("收音机"),
-            text("123")
-        ]
-        .spacing(8)
-        .padding(20)
-        .into()
-    }
-}
 
 fn main() -> iced::Result {
     iced::application(App::boot, App::update, App::view)
@@ -36,5 +16,10 @@ fn main() -> iced::Result {
             ..Default::default()
         })
         .theme(|_app: &App| iced::Theme::Dark)
+        .subscription(subscriptions)
         .run()
+}
+
+fn subscriptions(_app: &App) -> iced::Subscription<Message> {
+    iced::time::every(Duration::from_secs(1)).map(|_| Message::Tick)
 }
